@@ -1,0 +1,31 @@
+.Category-item {
+  //Fast stub
+  max-width: 300px;
+  border: 1px solid black;
+  overflow: hidden;
+
+  &--image {
+    width: 100px;
+    height: 100px;
+  }
+
+  &--description {
+    display:flex;
+    flex-direction: column;
+
+    &-brand {
+      border: 1px solid #a57252;
+      background: #c7bdb8;
+    }
+
+    &-title {
+      border: 1px solid #a4a4a4;
+      background: #ddd2cd;
+    }
+
+    &-price {
+      border: 1px solid #967cff;
+      background: #ebdfda;
+    }
+  }
+}
