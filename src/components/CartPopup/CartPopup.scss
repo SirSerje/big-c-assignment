@@ -1,0 +1,19 @@
+.CartPopup {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border: 1px solid blue;
+  right: 0;
+  background: #ffd5f2;
+  //TODO: should be top
+  bottom: 20px;
+  &--container {
+    border: 1px solid blue;
+   min-height: 250px;
+  }
+
+  &--bottom {
+    border: 1px solid blue;
+
+  }
+}

@@ -7,6 +7,7 @@ import CategoryItem from './CategoryItem';
 
 class Category extends Component {
 
+  addToCartHandler = (e) => this.props.addToCart(e.target.id)
 
   render() {
     return (
@@ -14,11 +15,18 @@ class Category extends Component {
         <div>
           Category
         </div>
-        {
-          this.props.products &&
-          this.props.products.length &&
-          this.props.products.map(i => <CategoryItem key={i.id} data={i}/>)
-        }
+        <div className="Category-container">
+          {
+            this.props.products.visibleIds &&
+            this.props.products.visibleIds.length &&
+            this.props.products.visibleIds.map(i =>{
+              let a = this.props.products.byId[i]
+              return ( <CategoryItem
+                onClick={this.addToCartHandler}
+                key={a.id}
+                data={a}/>)})
+            }
+        </div>
       </div>
     );
   }
@@ -33,7 +41,10 @@ const mapStateToProps = ({products}) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    init: () => dispatch(actions.init()),
+    init: () => dispatch(actions.getAllProducts()),
+    // addToCart: id => dispatch(actions.add2Cart(id)),
+    addToCart: id => dispatch(actions.addToCart(id)),
+
   };
 };
 
