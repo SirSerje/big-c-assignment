@@ -4,7 +4,7 @@ import * as actions from '../../actions';
 import './App.scss';
 import {connect} from 'react-redux';
 import Category from '../Category';
-import Cart from '../Cart';
+import CartComponent from '../CartComponent';
 import Product from '../Product';
 import CartPopup from '../CartPopup'
 
@@ -32,7 +32,7 @@ class App extends React.PureComponent {
         </header>
         {this.state.isModalOpen && <CartPopup />}
         <Route exact path="/" component={Category}/>
-        <Route path="/cart" component={Cart}/>
+        <Route path="/cart" component={CartComponent}/>
         <Route path="/product/:id" component={Product}/>
 
 

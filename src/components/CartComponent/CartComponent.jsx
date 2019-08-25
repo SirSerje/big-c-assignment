@@ -3,13 +3,14 @@ import './Cart.scss';
 import {Link} from 'react-router-dom';
 import {getCartProducts, getTotal} from '../../reducers';
 import {connect} from 'react-redux';
+import CartContainer, {Cart} from "../CartPopup/CartPopup";
 
 
-const Cart = ({products, total}) => {
+const CartComponent = ({products, total}) => {
   const hasProducts = products.length > 0;
 
   return (
-    <div >some test
+    <div >
       <div >
         <Cart
           products={products}
@@ -32,4 +33,4 @@ const mapStateToProps = (state) => ({
 
 export default connect(
   mapStateToProps,
-)(Cart);
+)(CartComponent);

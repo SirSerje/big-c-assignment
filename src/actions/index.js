@@ -46,3 +46,7 @@ export const checkout = products => (dispatch, getState) => {
   });
 
 };
+
+export const removeFromCart = productId => dispatch => dispatch({type: types.REMOVE_FROM_CARD, productId})
+//TODO swap const
+export const removeAll = productId => dispatch => dispatch({type: types.REMOVE_1_FROM_CARD, productId})

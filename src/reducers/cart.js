@@ -1,33 +1,64 @@
-import {
-  ADD_TO_CART,
-  CHECKOUT_REQUEST,
-  CHECKOUT_FAILURE
-} from '../constants';
+import {ADD_TO_CART, REMOVE_1_FROM_CARD, REMOVE_FROM_CARD} from '../constants';
 
 const initialState = {
   addedIds: [],
   quantityById: {}
 };
 
-const addedIds = (state = initialState.addedIds, action) => {
-  switch (action.type) {
+const addedIds = (state = initialState.addedIds, action, quantity) => {
+  const {type, productId} = action;
+  switch (type) {
   case ADD_TO_CART:
-    if (state.indexOf(action.productId) !== -1) {
+    if (state.indexOf(productId) !== -1) {
       return state;
     }
-    return [ ...state, action.productId ];
+    return [...state, productId];
+
+  case REMOVE_1_FROM_CARD:
+    if (quantity[productId] - 1 === 0) {
+      const a = state.filter(i => i !== productId);
+      return [...a];
+    }
+    return state;
+
+  case REMOVE_FROM_CARD:
+    const b = state.filter(i => i !== productId);
+    return [...b];
   default:
     return state;
   }
 };
 
 const quantityById = (state = initialState.quantityById, action) => {
-  switch (action.type) {
+  const {type, productId} = action;
+
+  switch (type) {
   case ADD_TO_CART:
-    const { productId } = action;
-    return { ...state,
+    return {
+      ...state,
       [productId]: (state[productId] || 0) + 1
     };
+
+  case REMOVE_FROM_CARD:
+    //FIXME : как без лодаша убрать значение из объекта?
+    const {[productId]: b, ...rest} = state;
+    return {...rest};
+
+  case REMOVE_1_FROM_CARD:
+    //FIXME : если нету кнопки то проверка не нужна, но тест то я написать могу, по сути ;)
+    if (state[productId] && state[productId] > 0) {
+      if (state[productId] - 1 === 0) {
+        //FIXME : такой способ удаления шляпа или нет? (как минимум мне не нравиться что лишняя переменная создается
+        const {[productId]: a, ...rest} = state;
+        return {...rest};
+      }
+      return {
+        ...state,
+        [productId]: state[productId] - 1
+      };
+    }
+    return state;
+
   default:
     return state;
   }
@@ -39,18 +70,11 @@ export const getQuantity = (state, productId) =>
 export const getAddedIds = state => state.addedIds;
 
 const cart = (state = initialState, action) => {
-  switch (action.type) {
-    //FIXME: not needed
-  case CHECKOUT_REQUEST:
-    return initialState;
-  case CHECKOUT_FAILURE:
-    return action.cart;
-  default:
-    return {
-      addedIds: addedIds(state.addedIds, action),
-      quantityById: quantityById(state.quantityById, action)
-    };
-  }
+  return {
+    //FIXME: мне надо некрасиво передавать или весь стейт или отдельно двумя параметрами addedIds и quantityById, как лучше распетлять?
+    addedIds: addedIds(state.addedIds, action, state.quantityById),
+    quantityById: quantityById(state.quantityById, action)
+  };
 };
 
 export default cart;
