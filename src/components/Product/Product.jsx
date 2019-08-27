@@ -24,8 +24,6 @@ class Product extends Component {
   //FIXME : should be input instead text
   //TODO: change add to cart handler
   render() {
-    console.log('____', this.props.product);
-    console.log(this.state.id);
     return (
       <div className="Product">
 
@@ -48,7 +46,6 @@ class Product extends Component {
 }
 
 const mapStateToProps = (state, b) => {
-  console.log(state, +b.match.params.id);
   return {
     product: getProduct(state, b.match.params.id),
   };

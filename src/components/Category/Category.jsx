@@ -17,15 +17,15 @@ class Category extends Component {
         </div>
         <div className="Category-container">
           {
-            this.props.products.visibleIds &&
-            this.props.products.visibleIds.length &&
-            this.props.products.visibleIds.map(i =>{
-              let a = this.props.products.byId[i]
-              return ( <CategoryItem
-                onClick={this.addToCartHandler}
-                key={a.id}
-                data={a}/>)})
-            }
+            this.props.products.byId &&
+            Object.values(this.props.products.byId)
+              .sort((a, b) => a.id - b.id)
+              .map(i =>
+                <CategoryItem
+                  onClick={this.addToCartHandler}
+                  key={i.id}
+                  data={i}/>)
+          }
         </div>
       </div>
     );
@@ -42,9 +42,7 @@ const mapStateToProps = ({products}) => {
 const mapDispatchToProps = dispatch => {
   return {
     init: () => dispatch(actions.getAllProducts()),
-    // addToCart: id => dispatch(actions.add2Cart(id)),
     addToCart: id => dispatch(actions.addToCart(id)),
-
   };
 };
 

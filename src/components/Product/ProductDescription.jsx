@@ -1,6 +1,6 @@
 import React from 'react';
 
-//FIXME : надо ссылаться только на корневую директорию для получения ссылки
+//FIXME : надо ссылаться только на корневую директорию для получения ссылки картинки
 const ProductDescription = (props) => {
   const {title, price, image, children, brand, description} = props;
   return (

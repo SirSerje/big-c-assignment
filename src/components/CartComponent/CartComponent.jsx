@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {getCartProducts, getTotal} from '../../reducers';
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
-import PopupProduct from '../CartPopup/PopupProduct';
+import {PopupProduct} from '../CartPopup';
 
 
 const CartComponent = ({products, total, addToCart, removeFromCart, removeAllFromCart}) => {
@@ -13,7 +13,6 @@ const CartComponent = ({products, total, addToCart, removeFromCart, removeAllFro
   const removeAll = (i) => removeAllFromCart(i.target.id);
 
   const hasProducts = products.length > 0;
-  console.log('_____', products, total);
   return (
     <div>
       <div>
