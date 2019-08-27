@@ -26,9 +26,11 @@ class App extends React.PureComponent {
   render() {
     return (
       <div className="App">
-        <header>
+        <header className="App-header">
           <span>   <Link to="/">Category</Link></span>
+          <div className="App-header--cart">
           <span> <b onClick={this.showCartPopup}>show cart</b></span>
+          </div>
         </header>
         {this.state.isModalOpen && <CartPopup />}
         <Route exact path="/" component={Category}/>

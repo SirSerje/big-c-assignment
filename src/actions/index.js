@@ -31,13 +31,13 @@ export const getAllProducts = () => dispatch => {
       // dispatch({ type: types.APP_INIT, payload: response.data });
     });
 }
-
-const addToCartUnsafe = productId => ({
+//FIXME: разобраться с количеством
+const addToCartUnsafe = (productId, quantity=1) => ({
   type: types.ADD_TO_CART,
   productId
 })
 
-export const addToCart = productId => dispatch => dispatch(addToCartUnsafe(productId))
+export const addToCart = (productId, quantity) => dispatch => dispatch(addToCartUnsafe(productId, quantity))
 
 export const checkout = products => (dispatch, getState) => {
   const { cart } = getState();
