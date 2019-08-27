@@ -12,7 +12,7 @@ class App extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = ({
-      isModalOpen: true,
+      isModalOpen: false,
     });
   }
 
@@ -27,12 +27,17 @@ class App extends React.PureComponent {
     return (
       <div className="App">
         <header className="App-header">
-          <span>   <Link to="/">Category</Link></span>
-          <div className="App-header--cart">
-          <span> <b onClick={this.showCartPopup}>show cart</b></span>
+          <div className="App-header--logo">no logo</div>
+          <div className="App-header--menu">
+            <span>   <Link to="/">Category</Link></span>
           </div>
+          <div className="App-header--cart">
+            <span> <b onClick={this.showCartPopup}>show cart</b></span>
+          </div>
+
         </header>
-        {this.state.isModalOpen && <CartPopup />}
+        {this.state.isModalOpen && <CartPopup/>}
+
         <Route exact path="/" component={Category}/>
         <Route path="/cart" component={CartComponent}/>
         <Route path="/product/:id" component={Product}/>

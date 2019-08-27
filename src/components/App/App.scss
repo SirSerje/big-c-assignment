@@ -7,13 +7,27 @@
 }
 
 .App-header {
-  background-color: #f2dfff;
+  display: flex;
+  justify-content: space-between;
+  background-color: #f7f0ec;
   height: 50px;
-  margin-bottom: 20px;
-  border:1px solid blue;
+
+  align-items: center;
+
   &--cart {
-   border:1px solid red
- }
+    cursor: pointer;
+    background: #b5b4b7;
+  }
+
+  &--logo {
+    background: #e1dadd;
+  }
+
+  &--menu {
+    background: #dbe1c4;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
 }
 
 .App-title {

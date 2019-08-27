@@ -5,8 +5,7 @@
   border: 1px solid blue;
   right: 0;
   background: #ffd5f2;
-  //TODO: should be top
-  bottom: 20px;
+  top: 50px; //SAME AS HEADER HEIGHT
   &--container {
     border: 1px solid blue;
    min-height: 250px;
