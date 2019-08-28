@@ -1,5 +1,6 @@
 import PopupProduct from './PopupProduct';
 import React from 'react';
+import './CartPopup.scss'
 
 const PopupCart = ({products, total, add,remove, removeAll}) => {
   const hasProducts = products.length > 0;
@@ -19,16 +20,18 @@ const PopupCart = ({products, total, add,remove, removeAll}) => {
     }
     )
   ) : (
-    <em>Please add some products to cart.</em>
+    <em>Cart is empty</em>
   );
 
   return (
-    <div>
-      <h3>Your Cart</h3>
-      <div>{nodes}</div>
-      <p>Total: &#36;{total}</p>
+    <>
+      <div className="CartPopup--container--products">{nodes}</div>
+      <div className="CartPopup--container--total-price">
+        <div>Total:</div>
+        <div>&#36;{total}</div>
+      </div>
 
-    </div>
+    </>
   );
 };
 

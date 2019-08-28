@@ -18,7 +18,7 @@ const CartContainer = (props) => {
   const removeAll = (i) => removeAllFromCart(i.target.id);
 
   return (
-    <div className="CartPopup">Cart Popup
+    <div className="CartPopup">
       <div className="CartPopup--container">
         <PopupCart
           products={products}
@@ -29,7 +29,6 @@ const CartContainer = (props) => {
         />
       </div>
       <div className="CartPopup--bottom">
-
         <Link to={'/cart'}>view cart</Link>
         <button disabled={hasProducts ? '' : 'disabled'}>
           Checkout

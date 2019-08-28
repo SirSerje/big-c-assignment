@@ -37,9 +37,9 @@ class App extends React.PureComponent {
           </div>
 
         </header>
-        <OutsideDetector clickOutside={() => this.setState({isModalOpen: false})}>
-          {this.state.isModalOpen && <CartPopup/>}
-        </OutsideDetector>
+        {/*<OutsideDetector clickOutside={() => this.setState({isModalOpen: false})}>*/}
+          {<CartPopup/>}
+        {/*</OutsideDetector>*/}
         <Route exact path="/" component={Category}/>
         <Route path="/cart" component={CartComponent}/>
         <Route path="/product/:id" component={Product}/>

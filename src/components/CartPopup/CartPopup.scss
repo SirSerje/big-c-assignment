@@ -1,18 +1,69 @@
 .CartPopup {
   position: fixed;
-  width: 300px;
-  height: 300px;
-  border: 1px solid blue;
-  right: 0;
-  background: #ffd5f2;
+  width: 400px;
+  height: 350px;
+  right: 15px;
+  background: white;
   top: 50px; //SAME AS HEADER HEIGHT
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   &--container {
-    border: 1px solid blue;
-   min-height: 250px;
+    flex-grow: 5;
+    min-height: 250px;
+
+    &--products {
+      background: green;
+      flex-grow: 3;
+    }
+
+    &--total-price {
+      padding: 4px;
+      border-top: 1px solid red;
+      flex-grow: 1;
+      flex-direction: row;
+      justify-content: space-between;
+      //TODO: !!! here wrong
+      div {
+      background-color: red;
+      }
+    }
   }
 
   &--bottom {
-    border: 1px solid blue;
+    flex-grow: 1;
+
+    button:hover {
+      outline: 0;
+      background: #565154;
+    }
+
+    button {
+      background-color: black;
+      border: none;
+      color: white;
+      padding: 15px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+
+    a {
+      background-color: white;
+      border: none;
+      color: black;
+      padding: 15px;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
 
   }
 }
