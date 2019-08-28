@@ -7,6 +7,7 @@ import Category from '../Category';
 import CartComponent from '../CartComponent';
 import Product from '../Product';
 import CartPopup from '../CartPopup'
+import OutsideDetector from "../../OutsideDetector";
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -36,8 +37,9 @@ class App extends React.PureComponent {
           </div>
 
         </header>
-        {this.state.isModalOpen && <CartPopup/>}
-
+        <OutsideDetector clickOutside={() => this.setState({isModalOpen: false})}>
+          {this.state.isModalOpen && <CartPopup/>}
+        </OutsideDetector>
         <Route exact path="/" component={Category}/>
         <Route path="/cart" component={CartComponent}/>
         <Route path="/product/:id" component={Product}/>
