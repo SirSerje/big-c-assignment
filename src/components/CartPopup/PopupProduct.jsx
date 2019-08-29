@@ -1,13 +1,22 @@
 import React from 'react';
+import "./PopupProduct.scss"
 
-const PopupProduct = ({id, price, quantity, title, add ,remove, removeAll}) =>{
+const PopupProduct = ({id, price, image, brand, quantity, title, add, remove, removeAll}) => {
   return (
-    <div>
-      {id} - > {title} - &#36;{price}{quantity ? ` x ${quantity}` : null}
-      <button id={id} onClick={add}>+</button>
-      <button id={id} onClick={removeAll}>-</button>
-      <button id={id} onClick={remove}>X</button>
+    <div className="PopupProduct">
+      <img src={`http://localhost:3000/media/${image}`} className="PopupProduct--image"/>
+      <div className="PopupProduct--description">
+        <div
+          className="PopupProduct--description-title">{title}<span>{quantity ? ` x ${quantity}` : null}</span>
+        </div>
+        <div className="PopupProduct--description-brand">{brand}</div>
+        <div className="PopupProduct--description-price">&#36;{price}</div>
+      </div>
+      <div className="PopupProduct--control">
+        <button id={id} onClick={remove}>X</button>
+      </div>
     </div>
-  );};
+  );
+};
 
 export default PopupProduct;

@@ -24,6 +24,7 @@ export default class OutsideDetector extends Component {
   handleClickOutside(event) {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       this.props.clickOutside && this.props.clickOutside();
+      console.log('____')
     }
   }
 

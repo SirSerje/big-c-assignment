@@ -22,24 +22,32 @@ class App extends React.PureComponent {
     this.props.init();
   }
 
-  showCartPopup = () => this.setState({isModalOpen: !this.state.isModalOpen});
+  showCartPopup = () => {
+    console.log(this.state.isModalOpen)
+    this.setState({isModalOpen: !this.state.isModalOpen});
+  }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <div className="App-header--logo">no logo</div>
+          <div className="App-header--logo">big-c-assignment</div>
           <div className="App-header--menu">
             <span>   <Link to="/">Category</Link></span>
           </div>
           <div className="App-header--cart">
-            <span> <b onClick={this.showCartPopup}>show cart</b></span>
+            <span>{
+              this.state.isModalOpen
+                ? <p onClick={()=> this.setState({isModalOpen:false})}>close cart</p>
+                : <b onClick={()=> this.setState({isModalOpen:true})}>show cart</b>
+
+            } </span>
           </div>
 
         </header>
-        {/*<OutsideDetector clickOutside={() => this.setState({isModalOpen: false})}>*/}
-          {<CartPopup/>}
-        {/*</OutsideDetector>*/}
+        <OutsideDetector clickOutside={() => this.setState({isModalOpen: false})}>
+          {this.state.isModalOpen && <CartPopup/>}
+        </OutsideDetector>
         <Route exact path="/" component={Category}/>
         <Route path="/cart" component={CartComponent}/>
         <Route path="/product/:id" component={Product}/>
@@ -51,12 +59,7 @@ class App extends React.PureComponent {
 }
 
 
-const mapStateToProps = ({products}) => {
-  //TODO sort products by id
-  return {
-    products
-  };
-};
+const mapStateToProps = ({products}) => products
 
 const mapDispatchToProps = dispatch => {
   return {

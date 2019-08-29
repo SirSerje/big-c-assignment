@@ -1,16 +1,15 @@
 import PopupProduct from './PopupProduct';
 import React from 'react';
-import './CartPopup.scss'
+import './CartPopup.scss';
 
-const PopupCart = ({products, total, add,remove, removeAll}) => {
+const PopupCart = ({products, total, add, remove, removeAll}) => {
   const hasProducts = products.length > 0;
   const nodes = hasProducts ? (
-    products.map(product =>{
-      const {title,price,quantity,id} = product;
+    products.map(product => {
+      const {id} = product;
+
       return (<PopupProduct
-        title={title}
-        price={price}
-        quantity={quantity}
+        {...product}
         key={id}
         id={id}
         add={add}
