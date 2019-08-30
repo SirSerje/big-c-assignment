@@ -12,9 +12,7 @@ class Category extends Component {
   render() {
     return (
       <div className="Category">
-        <div>
-          Category
-        </div>
+
         <div className="Category-container">
           {
             this.props.products.byId &&

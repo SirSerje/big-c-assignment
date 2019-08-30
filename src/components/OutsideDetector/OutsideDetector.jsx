@@ -24,7 +24,6 @@ export default class OutsideDetector extends Component {
   handleClickOutside(event) {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       this.props.clickOutside && this.props.clickOutside();
-      console.log('____')
     }
   }
 
@@ -34,6 +33,6 @@ export default class OutsideDetector extends Component {
 }
 
 OutsideDetector.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
   clickOutside: PropTypes.func,
 };

@@ -5,6 +5,8 @@ import {getCartProducts, getTotal} from '../../reducers';
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
 import {PopupProduct} from '../CartPopup';
+import PopupCart from "../CartPopup/PopupCart";
+import CartItem from "./CartItem";
 
 
 const CartComponent = ({products, total, addToCart, removeFromCart, removeAllFromCart}) => {
@@ -13,24 +15,34 @@ const CartComponent = ({products, total, addToCart, removeFromCart, removeAllFro
   const removeAll = (i) => removeAllFromCart(i.target.id);
 
   const hasProducts = products.length > 0;
+  const nodes = hasProducts ? (
+    products.map(product => {
+        const {id} = product;
+
+        return (<CartItem
+          {...product}
+          key={id}
+          id={id}
+          add={add}
+          remove={remove}
+          removeAll={removeAll}
+        />);
+      }
+    )
+  ) : (
+    <em>Cart is empty</em>
+  );
+
   return (
-    <div>
-      <div>
-        {Object.values(products).map(i =>
-          <PopupProduct key={i.id}
-            {...i}
-            add={add}
-            remove={remove}
-            removeAll={removeAll}/>)}
-      </div>
-      <div>
-        <Link to={'/cart'}>view cart</Link>
-        <button disabled={hasProducts ? '' : 'disabled'}>
-          Checkout
-        </button>
+    <div className="Cart">
+      <div className="CartPopup--container--products">{nodes}</div>
+      <div className="CartPopup--container--total-price">
+        <div>Total:</div>
+        <div>&#36;{total}</div>
       </div>
 
-    </div>);
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => ({

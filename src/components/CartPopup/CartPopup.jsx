@@ -4,7 +4,6 @@ import {getCartProducts, getTotal} from '../../reducers';
 import './CartPopup.scss';
 import {Link} from 'react-router-dom';
 import * as actions from '../../actions';
-import PopupProduct from "./PopupProduct";
 import PopupCart from "./PopupCart";
 
 //TODO : maybe stateless
