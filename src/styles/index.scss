@@ -1,0 +1,38 @@
+@mixin link-default() {
+  a:hover {
+    outline: 0;
+  }
+
+  a {
+    background-color: white;
+    color: black;
+    box-shadow: inset 0 0 0 2px black;
+    padding: 15px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+}
+
+@mixin button-default () {
+  button:focus {
+    outline: 0;
+  }
+  button:hover {
+    outline: 0;
+    background: #565154;
+  }
+  button {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 15px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+}

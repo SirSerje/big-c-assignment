@@ -1,26 +1,11 @@
+@import "../../styles/index";
+
 .Category {
   margin-left: 50px;
   margin-right: 50px;
   padding-top: 50px;
 
-  button:focus {
-    outline: 0;
-  }
-  button:hover {
-    outline: 0;
-    background: #565154;
-  }
-  button {
-    background-color: black;
-    border: none;
-    color: white;
-    padding: 15px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-  }
+  @include button-default();
 
   &-container {
     display: flex;
