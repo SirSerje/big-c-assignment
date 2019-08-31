@@ -1,3 +1,57 @@
-.Product {
+@import "../../styles/index";
 
+.Product {
+  display: flex;
+  flex-direction: column;
+  padding-top: $route-top-padding;
+
+  &--content {
+    display: flex;
+    flex-direction: row;
+
+    &-description {
+      padding: 2px;
+      text-align: left;
+      margin: 8px;
+
+      .title {
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      .description {
+        font-size: 14px;
+      }
+
+      .price {
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      .brand {
+        color: gray;
+        font-weight: lighter;
+      }
+
+    }
+
+    &-image {
+      padding: 2px;
+      margin: 8px;
+
+      position: relative;
+
+
+      img{
+        width:200px;
+        height:auto;
+        object-fit: scale-down;
+      }
+    }
+  }
+
+  &--controls {
+    padding: 2px;
+
+  }
 }

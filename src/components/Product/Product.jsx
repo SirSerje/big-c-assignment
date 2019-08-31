@@ -23,11 +23,13 @@ class Product extends Component {
 
   //FIXME : should be input instead text
   //TODO: change add to cart handler
+
   render() {
     return (
       <div className="Product">
 
-        <ProductDescription {...this.props.product}>
+        {this.props.product ? (<ProductDescription {...this.props.product}>
+
           <button onClick={() => this.changeQuantity(+1)}>+</button>
           <button onClick={() => this.changeQuantity(-1)}>-</button>
           <button
@@ -37,7 +39,7 @@ class Product extends Component {
             cart
           </button>
           <b>{this.state.counter}</b>
-        </ProductDescription>
+        </ProductDescription>) : (<b>sorry, no item found</b>)}
 
 
       </div>

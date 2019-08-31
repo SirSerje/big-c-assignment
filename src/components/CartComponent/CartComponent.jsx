@@ -5,8 +5,8 @@ import {getCartProducts, getTotal} from '../../reducers';
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
 import {PopupProduct} from '../CartPopup';
-import PopupCart from "../CartPopup/PopupCart";
-import CartItem from "./CartItem";
+import PopupCart from '../CartPopup/PopupCart';
+import CartItem from './CartItem';
 
 
 const CartComponent = ({products, total, addToCart, removeFromCart, removeAllFromCart}) => {
@@ -17,28 +17,29 @@ const CartComponent = ({products, total, addToCart, removeFromCart, removeAllFro
   const hasProducts = products.length > 0;
   const nodes = hasProducts ? (
     products.map(product => {
-        const {id} = product;
+      const {id} = product;
 
-        return (<CartItem
-          {...product}
-          key={id}
-          id={id}
-          add={add}
-          remove={remove}
-          removeAll={removeAll}
-        />);
-      }
+      return (<CartItem
+        {...product}
+        key={id}
+        id={id}
+        add={add}
+        remove={remove}
+        removeAll={removeAll}
+      />);
+    }
     )
   ) : (
-    <em>Cart is empty</em>
+    <b>Cart is empty</b>
   );
 
   return (
     <div className="Cart">
-      <div className="CartPopup--container--products">{nodes}</div>
-      <div className="CartPopup--container--total-price">
+      <div className="Cart--container--products">{nodes}</div>
+      <div className="Cart--container--total-price">
         <div>Total:</div>
         <div>&#36;{total}</div>
+        <div><button>checkout</button></div>
       </div>
 
     </div>

@@ -9,6 +9,7 @@
 }
 
 .App-header {
+  z-index:2;
   display: flex;
   justify-content: space-between;
   box-shadow: $common-box-shadow;

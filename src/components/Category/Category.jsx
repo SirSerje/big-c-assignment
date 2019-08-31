@@ -30,18 +30,12 @@ class Category extends Component {
   }
 }
 
-const mapStateToProps = ({products}) => {
-  //TODO sort products by id
-  return {
-    products
-  };
-};
+const mapStateToProps = ({products}) => ({products})
 
-const mapDispatchToProps = dispatch => {
-  return {
-    init: () => dispatch(actions.getAllProducts()),
-    addToCart: id => dispatch(actions.addToCart(id)),
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  init: () => dispatch(actions.getAllProducts()),
+  addToCart: id => dispatch(actions.addToCart(id)),
+})
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);
