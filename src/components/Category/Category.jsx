@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './Category.scss';
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
 //TODO: organize import correctly
 import CategoryItem from './CategoryItem';
 
-class Category extends Component {
+class Category extends React.PureComponent {
 
-  addToCartHandler = (e) => this.props.addToCart(e.target.id)
+  addToCartHandler = (e) => this.props.addToCart(e.target.id);
 
   render() {
     return (
@@ -35,7 +35,7 @@ const mapStateToProps = ({products}) => ({products})
 const mapDispatchToProps = dispatch => ({
   init: () => dispatch(actions.getAllProducts()),
   addToCart: id => dispatch(actions.addToCart(id)),
-})
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);

@@ -1,11 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './Product.scss';
-import {connect} from 'react-redux';
-import {getProduct} from '../../reducers';
+import { connect } from 'react-redux';
+import { getProduct } from '../../reducers';
 import * as actions from '../../actions';
-import ProductDescription from './ProductDescription';
 
-class Product extends Component {
+class Product extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,48 +14,66 @@ class Product extends Component {
     this.changeQuantity = this.changeQuantity.bind(this);
   }
 
-  //TODO: add arrow function (check react config)
+  // TODO: add arrow function (check react config)
   changeQuantity(i) {
-    this.setState({counter: this.state.counter + i});
+    this.setState({ counter: this.state.counter + i });
   }
 
-
-  //FIXME : should be input instead text
-  //TODO: change add to cart handler
+  renderDescription({
+    title, price, image, brand, description,
+  }) {
+    return (
+      <div className="Product--content">
+        <div className="Product--content-image">
+          <img src={`${window.location.origin}/media/${image}`} alt={title} />
+        </div>
+        <div className="Product--content-description">
+          <div className="title">{title}</div>
+          <div className="description">{description}</div>
+          <div className="price">
+            &#36;
+            {price}
+          </div>
+          <div className="brand">{brand}</div>
+        </div>
+      </div>
+    );
+  }
 
   render() {
     return (
       <div className="Product">
 
-        {this.props.product ? (<ProductDescription {...this.props.product}>
+        {this.props.product ? (
+          <>
+            {this.renderDescription({ ...this.props.product })}
 
-          <button onClick={() => this.changeQuantity(+1)}>+</button>
-          <button onClick={() => this.changeQuantity(-1)}>-</button>
-          <button
-            id={this.props.state}
-            onClick={() => this.props.addToCart(this.state.id, this.state.counter)}
-          > add to
-            cart
-          </button>
-          <b>{this.state.counter}</b>
-        </ProductDescription>) : (<b>sorry, no item found</b>)}
-
-
+            <div className="Product--controls">
+              <button onClick={() => this.changeQuantity(+1)}>+</button>
+              <button onClick={() => this.changeQuantity(-1)}>-</button>
+              <button
+                id={this.props.state}
+                onClick={() => this.props.addToCart(this.state.id, this.state.counter)}
+              >
+                {' '}
+add to
+              cart
+              </button>
+              <b>{this.state.counter}</b>
+            </div>
+          </>
+        ) : (<b>sorry, no item found</b>)}
       </div>
     );
   }
 }
 
-const mapStateToProps = (state, b) => {
-  return {
-    product: getProduct(state, b.match.params.id),
-  };
-};
+const mapStateToProps = (state, b) => ({
+  product: getProduct(state, b.match.params.id),
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addToCart: (id, quantity) => dispatch(actions.addToCart(id, quantity)),
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  addToCart: (id, quantity) => dispatch(actions.addToCart(id, quantity)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Product);

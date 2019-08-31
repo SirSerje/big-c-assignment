@@ -13,6 +13,7 @@ const products = (state, action) => {
 };
 
 const byId = (state = {}, action) => {
+  const { productId } = action;
   switch (action.type) {
   case RECEIVE_PRODUCTS:
     return {
@@ -20,14 +21,13 @@ const byId = (state = {}, action) => {
       ...action.products.reduce((obj, product) => {
         obj[product.id] = product;
         return obj;
-      }, {})
+      }, {}),
     };
   default:
-    const { productId } = action;
     if (productId) {
       return {
         ...state,
-        [productId]: products(state[productId], action)
+        [productId]: products(state[productId], action),
       };
     }
     return state;
@@ -38,5 +38,4 @@ export default combineReducers({
   byId,
 });
 
-export const getProduct = (state, id) =>
-  state.byId[id];
+export const getProduct = (state, id) => state.byId[id];

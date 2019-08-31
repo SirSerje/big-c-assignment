@@ -1,3 +1,3 @@
-import OutsideDetector from "./OutsideDetector";;
+import OutsideDetector from './OutsideDetector';
 
 export default OutsideDetector;
