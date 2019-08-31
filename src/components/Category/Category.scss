@@ -1,9 +1,7 @@
 @import "../../styles/index";
 
 .Category {
-  margin-left: 50px;
-  margin-right: 50px;
-  padding-top: $route-top-padding;
+  @include page-padding();
 
   @include button-default();
 

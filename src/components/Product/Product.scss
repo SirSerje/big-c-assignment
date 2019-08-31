@@ -1,9 +1,10 @@
 @import "../../styles/index";
 
 .Product {
+  @include page-padding();
+
   display: flex;
   flex-direction: column;
-  padding-top: $route-top-padding;
 
   &--content {
     display: flex;
@@ -29,7 +30,7 @@
       }
 
       .brand {
-        color: gray;
+        color: $color_gray;
         font-weight: lighter;
       }
 
@@ -42,9 +43,9 @@
       position: relative;
 
 
-      img{
-        width:200px;
-        height:auto;
+      img {
+        width: 200px;
+        height: auto;
         object-fit: scale-down;
       }
     }
@@ -52,6 +53,5 @@
 
   &--controls {
     padding: 2px;
-
   }
 }

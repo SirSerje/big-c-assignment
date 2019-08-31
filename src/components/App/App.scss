@@ -2,58 +2,45 @@
 
 .App {
   text-align: center;
-}
 
-.App-logo {
-  height: 80px;
-}
+  &-header {
+    z-index:2;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: $common-box-shadow;
+    background: $color_white;
+    height: 50px;
+    position: fixed;
+    width: 100%;
+    align-items: center;
 
-.App-header {
-  z-index:2;
-  display: flex;
-  justify-content: space-between;
-  box-shadow: $common-box-shadow;
-  background: white;
-  height: 50px;
-  position: fixed;
-  width: 100%;
-  align-items: center;
-
-  &--cart {
-    //TODO : fixed size to avoid moving menu
-    width: 80px;
-    cursor: pointer;
-    user-select: none;
-    margin-right: 10px;
-  }
-
-  &--logo {
-    font-size: 18px;
-    margin-left: 10px;
-  }
-
-  &--menu {
-    margin-left: 5px;
-    margin-right: 5px;
-
-    a:link, a:visited {
-      background-color: white;
-      color: black;
-      padding: 10px 25px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
+    &--cart {
+      width: 80px;
+      cursor: pointer;
+      user-select: none;
+      margin-right: 10px;
     }
 
-    a:hover, a:active {
+    &--logo {
+      font-size: 18px;
+      margin-left: 10px;
+    }
+
+    &--menu {
+      margin-left: 5px;
+      margin-right: 5px;
+
+      a:link, a:visited {
+        background-color: $color_white;
+        color: $color_black;
+        padding: 10px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      a:hover, a:active {
+      }
     }
   }
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
 }

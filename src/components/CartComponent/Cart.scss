@@ -1,10 +1,7 @@
 @import "../../styles/index";
 
 .Cart {
-
-  padding-top: $route-top-padding;
-  margin-left:50px;
-  margin-right:50px;
+  @include page-padding();
 
   &--container {
     display: flex;

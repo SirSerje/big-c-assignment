@@ -6,7 +6,7 @@
   width: 400px;
   height: 350px;
   right: 15px;
-  background: white;
+  background: $color_white;
   top: 51px; //SAME AS HEADER HEIGHT+1px
   box-shadow: $common-box-shadow;
   display: flex;
@@ -38,7 +38,6 @@
     margin-bottom: 12px;
 
     @include button-default();
-
     @include link-default();
   }
 }
