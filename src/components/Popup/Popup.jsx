@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { getCartProducts, getTotal } from '../../reducers';
 import './Popup.scss';
-import { Link } from 'react-router-dom';
 import * as actions from '../../actions';
 import PopupCart from './PopupCart';
 
@@ -31,13 +32,25 @@ const CartContainer = (props) => {
       </div>
       <div className="CartPopup--bottom">
         <Link to="/cart">view cart</Link>
-        <button disabled={hasProducts ? '' : 'disabled'}>
+        <button type="button" disabled={hasProducts ? '' : 'disabled'}>
           Checkout
         </button>
       </div>
 
     </div>
   );
+};
+
+CartContainer.propTypes = {
+  products: PropTypes.any,
+  total: PropTypes.any,
+  addToCart: PropTypes.any,
+  removeFromCart: PropTypes.any,
+  removeAllFromCart: PropTypes.any,
+};
+
+CartContainer.defaultProps = {
+
 };
 
 const mapStateToProps = (state) => ({

@@ -1,6 +1,7 @@
 import React from 'react';
 import './Cart.scss';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { getCartProducts, getTotal } from '../../reducers';
 import * as actions from '../../actions';
 import CartItem from './CartItem';
@@ -39,14 +40,26 @@ const Cart = ({
       <div className="Cart--container--total-price">
         <div>Total:</div>
         <div>
-&#36;
+          &#36;
           {total}
         </div>
-        <div><button>checkout</button></div>
+        <div><button type="button">checkout</button></div>
       </div>
 
     </div>
   );
+};
+
+Cart.propTypes = {
+  products: PropTypes.any,
+  total: PropTypes.any,
+  addToCart: PropTypes.any,
+  removeFromCart: PropTypes.any,
+  removeAllFromCart: PropTypes.any,
+};
+
+Cart.defaultProps = {
+
 };
 
 const mapStateToProps = (state) => ({

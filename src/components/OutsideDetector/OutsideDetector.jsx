@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class OutsideDetector extends Component {
+export default class OutsideDetector extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -10,10 +10,12 @@ export default class OutsideDetector extends Component {
   }
 
   componentDidMount() {
+    // eslint-disable-next-line no-undef
     document.addEventListener('click', this.handleClickOutside, true);
   }
 
   componentWillUnmount() {
+    // eslint-disable-next-line no-undef
     document.removeEventListener('click', this.handleClickOutside, true);
   }
 
@@ -23,6 +25,7 @@ export default class OutsideDetector extends Component {
 
   handleClickOutside(event) {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      // eslint-disable-next-line no-unused-expressions,react/destructuring-assignment
       this.props.clickOutside && this.props.clickOutside();
     }
   }

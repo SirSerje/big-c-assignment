@@ -35,7 +35,7 @@ const addToCartUnsafe = (productId, quantity = 1) => ({
 });
 
 export const addToCart = (productId, quantity) => (dispatch) => dispatch(
-  addToCartUnsafe(productId, quantity)
+  addToCartUnsafe(productId, quantity),
 );
 
 export const checkout = (products) => (dispatch, getState) => {

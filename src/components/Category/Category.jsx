@@ -30,7 +30,7 @@ class Category extends React.PureComponent {
   }
 }
 
-const mapStateToProps = ({products}) => ({products})
+const mapStateToProps = ({products}) => ({products});
 
 const mapDispatchToProps = dispatch => ({
   init: () => dispatch(actions.getAllProducts()),

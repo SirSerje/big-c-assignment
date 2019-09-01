@@ -1,8 +1,10 @@
 import React from 'react';
 import './Product.scss';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { getProduct } from '../../reducers';
 import * as actions from '../../actions';
+import { ROOT_LOCATION } from '../../constants';
 
 class Product extends React.PureComponent {
   constructor(props) {
@@ -25,7 +27,8 @@ class Product extends React.PureComponent {
     return (
       <div className="Product--content">
         <div className="Product--content-image">
-          <img src={`${window.location.origin}/media/${image}`} alt={title} />
+          {/* eslint-disable-next-line no-undef */}
+          <img src={`${ROOT_LOCATION}/media/${image}`} alt={title} />
         </div>
         <div className="Product--content-description">
           <div className="title">{title}</div>
@@ -43,21 +46,26 @@ class Product extends React.PureComponent {
   render() {
     return (
       <div className="Product">
-
         {this.props.product ? (
           <>
             {this.renderDescription({ ...this.props.product })}
-
+            {console.log(this.props.match)}
             <div className="Product--controls">
-              <button onClick={() => this.changeQuantity(+1)}>+</button>
-              <button onClick={() => this.changeQuantity(-1)}>-</button>
+              <button type="button" onClick={() => this.changeQuantity(+1)}>+</button>
               <button
+                type="button"
+                onClick={() => {
+                  this.state.counter > 1 && this.changeQuantity(-1);
+                }}
+              >
+                -
+              </button>
+              <button
+                type="button"
                 id={this.props.state}
                 onClick={() => this.props.addToCart(this.state.id, this.state.counter)}
               >
-                {' '}
-add to
-              cart
+                add to cart
               </button>
               <b>{this.state.counter}</b>
             </div>
@@ -67,6 +75,14 @@ add to
     );
   }
 }
+
+Product.propTypes = {
+  match: PropTypes.shape({
+    id: PropTypes.string,
+  }),
+  addToCart: PropTypes.func,
+  product: PropTypes.any,
+};
 
 const mapStateToProps = (state, b) => ({
   product: getProduct(state, b.match.params.id),

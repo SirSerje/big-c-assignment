@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PopupItem from './PopupItem';
 import './Popup.scss';
 
@@ -35,5 +36,17 @@ const PopupCart = ({ products, total, remove }) => {
     </>
   );
 };
+
+
+PopupCart.propTypes = {
+  products: PropTypes.any,
+  total: PropTypes.any,
+  remove: PropTypes.any,
+};
+
+PopupCart.defaultProps = {
+
+};
+
 
 export default PopupCart;

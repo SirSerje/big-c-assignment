@@ -53,12 +53,8 @@ class App extends React.PureComponent {
                     ? <p onClick={() => this.setState({ isModalOpen: false })}>close cart</p>
                     : <b onClick={() => this.setState({ isModalOpen: true })}>show cart</b>
                 }
-                {' '}
-
               </span>
             )}
-            {' '}
-
           </div>
         </header>
         <OutsideDetector clickOutside={() => this.setState({ isModalOpen: false })}>
