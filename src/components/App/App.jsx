@@ -1,50 +1,82 @@
-import React, {Component} from 'react';
-import {Link, Route} from 'react-router-dom';
+import React from 'react';
+import { Link, Route, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import * as actions from '../../actions';
 import './App.scss';
-import {connect} from 'react-redux';
 import Category from '../Category';
-import Cart from '../Cart';
+import CartComponent from '../Cart';
 import Product from '../Product';
+import CartPopup from '../Popup';
+import OutsideDetector from '../OutsideDetector';
 
-class App extends Component {
+class App extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = ({
+      isModalOpen: false,
+    });
+  }
 
-  //Get info about products, when app just loaded
   componentDidMount() {
     this.props.init();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      this.onRouteChanged();
+    }
+  }
+
+  onRouteChanged() {
+    this.setState({ isModalOpen: false });
+  }
+
+  cartPopupAvailable() {
+    return this.props.location.pathname !== '/cart';
   }
 
   render() {
     return (
       <div className="App">
-        <header>
-          <Link to="/cart">My Cart</Link> <br/>
-          <Link to="/">Category</Link> <br/>
-          <Link to="/product/1">product/1</Link> <br/>
+        <header className="App-header">
+          <div className="App-header--logo">big-c-assignment</div>
+          <div className="App-header--menu">
+            <span>
+              <Link to="/">Category</Link>
+            </span>
+          </div>
+          <div className="App-header--cart">
+            {this.cartPopupAvailable() && (
+              <span>
+                {
+                  this.state.isModalOpen
+                    ? <p onClick={() => this.setState({ isModalOpen: false })}>close cart</p>
+                    : <b onClick={() => this.setState({ isModalOpen: true })}>show cart</b>
+                }
+              </span>
+            )}
+          </div>
         </header>
+        <OutsideDetector clickOutside={() => this.setState({ isModalOpen: false })}>
+          {this.state.isModalOpen && <CartPopup />}
+        </OutsideDetector>
 
-        <Route exact path="/" component={Category}/>
-        <Route path="/cart" component={Cart}/>
-        <Route path="/product/:id" component={Product}/>
-
-
+        <Route exact path="/" component={Category} />
+        <Route path="/cart" component={CartComponent} />
+        <Route path="/product/:id" component={Product} />
       </div>
     );
   }
 }
 
-
-const mapStateToProps = ({products}) => {
-  //TODO sort products by id
-  return {
-    products
-  };
+App.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
+  init: PropTypes.func,
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    init: () => dispatch(actions.init()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+const mapStateToProps = ({ products }) => products;
+const mapDispatchToProps = (dispatch) => ({ init: () => dispatch(actions.getAllProducts()) });
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));

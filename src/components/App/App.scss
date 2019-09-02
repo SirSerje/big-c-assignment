@@ -1,22 +1,46 @@
+@import "../../styles/index";
+
 .App {
   text-align: center;
-}
 
-.App-logo {
-  height: 80px;
-}
+  &-header {
+    z-index:2;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: $common-box-shadow;
+    background: $color_white;
+    height: 50px;
+    position: fixed;
+    width: 100%;
+    align-items: center;
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
+    &--cart {
+      width: 80px;
+      cursor: pointer;
+      user-select: none;
+      margin-right: 10px;
+    }
 
-.App-title {
-  font-size: 1.5em;
-}
+    &--logo {
+      font-size: 18px;
+      margin-left: 10px;
+    }
 
-.App-intro {
-  font-size: large;
+    &--menu {
+      margin-left: 5px;
+      margin-right: 5px;
+
+      a:link, a:visited {
+        background-color: $color_white;
+        color: $color_black;
+        padding: 10px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      a:hover, a:active {
+      }
+    }
+  }
 }

@@ -1,16 +1,29 @@
-import * as actionTypes from '../constants';
 import axios from 'axios';
+import * as types from '../constants';
 
-//TODO : split actions into separate files
-//TODO : remove payload if not necessary
-/**
- * init app & get data from package.json file
- */
-export const init = () => dispatch => {
+const receiveProducts = (products) => ({
+  type: types.RECEIVE_PRODUCTS,
+  products,
+});
+
+export const getAllProducts = () => (dispatch) => {
   axios.get('/products.json')
-    .then(function (response) {
-      dispatch({ type: actionTypes.APP_INIT, payload: response.data });
+    .then((products) => {
+      dispatch(receiveProducts(products.data));
     });
-
-
 };
+
+export const addToCart = (productId, quantity = 1) => (dispatch) => dispatch(
+  {
+    type: types.ADD_TO_CART,
+    payload: { productId, quantity },
+  },
+);
+
+export const removeFromCart = (productId) => (dispatch) => dispatch(
+  { type: types.REMOVE_ALL_FROM_CARD, payload: { productId } },
+);
+
+export const removeAll = (productId) => (dispatch) => dispatch(
+  { type: types.REMOVE_FROM_CARD, payload: { productId } },
+);

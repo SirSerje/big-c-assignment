@@ -1,0 +1,9 @@
+@import "../../styles/index";
+
+.CartItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  @include item-design(150px, 150px);
+}

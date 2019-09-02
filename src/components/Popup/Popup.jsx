@@ -1,57 +1,41 @@
 import React from 'react';
-import './Cart.scss';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getCartProducts, getTotal } from '../../reducers';
+import './Popup.scss';
 import * as actions from '../../actions';
-import CartItem from './CartItem';
+import PopupCart from './PopupCart';
 
-
-const Cart = ({
-  products, total, addToCart, removeFromCart, removeAllFromCart,
-}) => {
+const Popup = (props) => {
+  const {
+    products, total, addToCart, removeFromCart, removeAllFromCart,
+  } = props;
   const hasProducts = products.length > 0;
-  const nodes = hasProducts ? (
-    products.map((product) => {
-      const { id } = product;
 
-      return (
-        <CartItem
-          {...product}
-          key={id}
-          id={id}
+  return (
+    <div className="CartPopup">
+      <div className="CartPopup--container">
+        <PopupCart
+          products={products}
+          total={total}
           add={(i) => addToCart(i.target.id)}
           remove={(i) => removeFromCart(i.target.id)}
           removeAll={(i) => removeAllFromCart(i.target.id)}
         />
-      );
-    })
-  ) : (
-    <b>Cart is empty</b>
-  );
-
-  return (
-    <div className="Cart">
-      <div className="Cart--container--products">{nodes}</div>
-      <div className="Cart--container--total-price">
-        <div>Total:</div>
-        <div>
-          &#36;
-          {total}
-        </div>
-        <div>
-          <Link to="/">continue shopping</Link>
-        </div>
-        <div>
-          <button type="button">checkout</button>
-        </div>
       </div>
+      <div className="CartPopup--bottom">
+        <Link to="/cart">view cart</Link>
+        <button type="button" disabled={hasProducts ? '' : 'disabled'}>
+          Checkout
+        </button>
+      </div>
+
     </div>
   );
 };
 
-Cart.propTypes = {
+Popup.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object),
   total: PropTypes.string.isRequired,
   addToCart: PropTypes.func.isRequired,
@@ -70,4 +54,7 @@ const mapDispatchToProps = (dispatch) => ({
   removeAllFromCart: (id) => dispatch(actions.removeAll(id)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Popup);

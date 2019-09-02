@@ -1,41 +1,18 @@
-//TODO : re-config eslint
-
 module.exports = {
-  'env': {
-    'browser': true,
-    'es6': true
-  },
-  'extends': ['eslint:recommended', "plugin:import/errors", "plugin:import/warnings"],
-  'globals': {
-    'Atomics': 'readonly',
-    'SharedArrayBuffer': 'readonly'
-  },
-  'parserOptions': {
-    'ecmaFeatures': {
-      'jsx': true
-    },
-    'ecmaVersion': 2018,
-    'sourceType': 'module'
-  },
-  'plugins': [
-    'react'
-  ],
-  'rules': {
-    'indent': [
-      'error',
-      2
-    ],
-    'linebreak-style': [
-      'error',
-      'unix'
-    ],
-    'quotes': [
-      'error',
-      'single'
-    ],
-    'semi': [
-      'error',
-      'always'
-    ]
+  "extends": "eslint-config-airbnb",
+  "rules": {
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "no-shadow": 1,
+    "no-case-declarations" :1,
+    "react/require-default-props": 0,
+    "react/forbid-prop-types": 1,
+    "react/jsx-props-no-spreading": 1,
+    "class-methods-use-this": 1,
+    "react/destructuring-assignment": 0,
+    "indent": ["error", 2]
   }
 };
+
+

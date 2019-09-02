@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App/';
 import { BrowserRouter } from 'react-router-dom';
 import './index.scss';
 import './normalize.scss';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
+import App from './components/App';
 import store from './store';
 
 ReactDOM.render(
+  // eslint-disable-next-line react/jsx-filename-extension
   <BrowserRouter>
     <Provider store={store}>
       <App />
     </Provider>
   </BrowserRouter>,
-  document.getElementById('root')
+  // eslint-disable-next-line no-undef
+  document.getElementById('root'),
 );

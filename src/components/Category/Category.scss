@@ -1,2 +1,12 @@
+@import "../../styles/index";
+
 .Category {
+  @include page-padding();
+
+  @include button-default();
+
+  &-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }

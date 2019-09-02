@@ -1,36 +1,22 @@
-import {combineReducers} from 'redux';
-import {APP_INIT} from '../constants';
+import { combineReducers } from 'redux';
+import cart, * as fromCart from './cart';
+import products, * as fromProducts from './products';
 
-//TODO : move products & cart into separate files
-//TODO : keep params && guarantee immutability
-
-let products = (state = {}, action) => {
-  const {payload, type} = action;
-  switch (type) {
-  //TODO: stub
-  case APP_INIT:
-    return [...payload];
-
-  default:
-    return state;
-  }
-};
-
-let cart = (state = {}, action) => {
-  const {payload, type} = action;
-  switch (type) {
-  //TODO: stub
-  case APP_INIT:
-    return [...payload];
-
-  default:
-    return state;
-  }
-};
-
-const reducers = combineReducers({
-  products,
+export default combineReducers({
   cart,
+  products,
 });
 
-export default reducers;
+const getAddedIds = (state) => fromCart.getAddedIds(state.cart);
+const getQuantity = (state, id) => fromCart.getQuantity(state.cart, id);
+export const getProduct = (state, id) => fromProducts.getProduct(state.products, id);
+
+export const getTotal = (state) => getAddedIds(state)
+  .reduce((total, id) => total + getProduct(state, id).price * getQuantity(state, id),
+    0)
+  .toFixed(2);
+
+export const getCartProducts = (state) => getAddedIds(state).map((id) => ({
+  ...getProduct(state, id),
+  quantity: getQuantity(state, id),
+}));

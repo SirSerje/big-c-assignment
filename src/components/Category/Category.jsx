@@ -1,40 +1,46 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './Category.scss';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import * as actions from '../../actions';
-//TODO: organize import correctly
+// TODO: organize import correctly
 import CategoryItem from './CategoryItem';
 
-class Category extends Component {
 
-
+class Category extends React.PureComponent {
   render() {
     return (
       <div className="Category">
-        <div>
-          Category
+
+        <div className="Category-container">
+          {
+            this.props.products.byId
+            && Object.values(this.props.products.byId)
+              .sort((a, b) => a.id - b.id)
+              .map((i) => (
+                <CategoryItem
+                  onClick={(e) => this.props.addToCart(e.target.id)}
+                  key={i.id}
+                  data={i}
+                />
+              ))
+          }
         </div>
-        {
-          this.props.products &&
-          this.props.products.length &&
-          this.props.products.map(i => <CategoryItem key={i.id} data={i}/>)
-        }
       </div>
     );
   }
 }
 
-const mapStateToProps = ({products}) => {
-  //TODO sort products by id
-  return {
-    products
-  };
+Category.propTypes = {
+  products: PropTypes.objectOf(PropTypes.object),
+  addToCart: PropTypes.func,
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    init: () => dispatch(actions.init()),
-  };
-};
+const mapStateToProps = ({ products }) => ({ products });
+
+const mapDispatchToProps = (dispatch) => ({
+  init: () => dispatch(actions.getAllProducts()),
+  addToCart: (id) => dispatch(actions.addToCart(id)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);
