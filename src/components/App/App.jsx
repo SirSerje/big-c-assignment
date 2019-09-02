@@ -9,6 +9,7 @@ import CartComponent from '../Cart';
 import Product from '../Product';
 import CartPopup from '../Popup';
 import OutsideDetector from '../OutsideDetector';
+import { getTotalQuantity } from '../../reducers';
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -52,7 +53,7 @@ class App extends React.PureComponent {
                 {
                   this.state.isModalOpen
                     ? <p onClick={() => this.setState({ isModalOpen: false })}>close cart</p>
-                    : <b onClick={() => this.setState({ isModalOpen: true })}>show cart</b>
+                    : <b onClick={() => this.setState({ isModalOpen: true })}>show cart {this.props.quantity > 0 && `(${this.props.quantity})`}</b>
                 }
               </span>
             )}
@@ -77,6 +78,11 @@ App.propTypes = {
   init: PropTypes.func,
 };
 
-const mapStateToProps = ({ products }) => products;
+
+const mapStateToProps =  (state) => ({
+  products: state.products,
+  quantity: getTotalQuantity(state),
+});
+
 const mapDispatchToProps = (dispatch) => ({ init: () => dispatch(actions.getAllProducts()) });
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));
