@@ -19,6 +19,7 @@ const byId = (state = {}, action) => {
     return {
       ...state,
       ...action.products.reduce((obj, product) => {
+        // eslint-disable-next-line no-param-reassign
         obj[product.id] = product;
         return obj;
       }, {}),
