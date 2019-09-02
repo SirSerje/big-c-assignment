@@ -1,7 +1,17 @@
 import reducer, * as products from './products'
-import { ADD_TO_CART, RECEIVE_PRODUCTS } from '../constants';
+import { ADD_TO_CART, RECEIVE_SUCCESS } from '../constants';
+import cart from './cart';
 
 describe('reducers', () => {
+  const initialState = {
+    addedIds: [],
+    quantityById: {},
+  };
+  
+  it('should provide the initial state', () => {
+    expect(cart(undefined, {})).toEqual(initialState);
+  });
+  
   describe('products', () => {
     let state
     
@@ -9,7 +19,7 @@ describe('reducers', () => {
       
       beforeEach(() => {
         state = reducer({}, {
-          type: RECEIVE_PRODUCTS,
+          type: RECEIVE_SUCCESS,
           products: [
             {
               id: 1,

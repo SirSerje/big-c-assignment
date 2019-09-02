@@ -37,7 +37,7 @@ const addedIds = (state = initialState.addedIds, action, quantity) => {
 
 const quantityById = (state = initialState.quantityById, action) => {
   const { type, payload } = action;
-  const { productId, quantity } = payload || {};
+  const { productId, quantity = 1 } = payload || {};
 
   switch (type) {
   case ADD_TO_CART:

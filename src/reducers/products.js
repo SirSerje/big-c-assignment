@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { RECEIVE_PRODUCTS, ADD_TO_CART } from '../constants';
+import { RECEIVE_SUCCESS, ADD_TO_CART } from '../constants';
 
 const products = (state, action) => {
   switch (action.type) {
@@ -15,7 +15,7 @@ const products = (state, action) => {
 const byId = (state = {}, action) => {
   const { productId } = action;
   switch (action.type) {
-  case RECEIVE_PRODUCTS:
+  case RECEIVE_SUCCESS:
     return {
       ...state,
       ...action.products.reduce((obj, product) => {
