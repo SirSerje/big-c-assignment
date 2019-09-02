@@ -40,8 +40,8 @@ const PopupCart = ({ products, total, remove }) => {
 
 PopupCart.propTypes = {
   products: PropTypes.any,
-  total: PropTypes.any,
-  remove: PropTypes.any,
+  total: PropTypes.string.isRequired,
+  remove: PropTypes.func.isRequired,
 };
 
 PopupCart.defaultProps = {

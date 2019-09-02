@@ -51,16 +51,13 @@ const Cart = ({
 };
 
 Cart.propTypes = {
-  products: PropTypes.any,
-  total: PropTypes.any,
-  addToCart: PropTypes.any,
-  removeFromCart: PropTypes.any,
-  removeAllFromCart: PropTypes.any,
+  products: PropTypes.any.isRequired,
+  total: PropTypes.string.isRequired,
+  addToCart: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func.isRequired,
+  removeAllFromCart: PropTypes.func.isRequired,
 };
 
-Cart.defaultProps = {
-
-};
 
 const mapStateToProps = (state) => ({
   products: getCartProducts(state),

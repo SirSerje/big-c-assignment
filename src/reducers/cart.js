@@ -6,7 +6,9 @@ const initialState = {
 };
 
 const addedIds = (state = initialState.addedIds, action, quantity) => {
-  const { type, productId } = action;
+  const { type, payload } = action;
+  const { productId } = payload || {};
+
   switch (type) {
   case ADD_TO_CART:
     if (state.indexOf(productId) !== -1) {
@@ -14,14 +16,14 @@ const addedIds = (state = initialState.addedIds, action, quantity) => {
     }
     return [...state, productId];
 
-  case REMOVE_1_FROM_CARD:
+  case REMOVE_FROM_CARD:
     if (quantity[productId] - 1 === 0) {
       const a = state.filter((i) => i !== productId);
       return [...a];
     }
     return state;
 
-  case REMOVE_FROM_CARD:
+  case REMOVE_1_FROM_CARD:
     const b = state.filter((i) => i !== productId);
     return [...b];
   default:
@@ -30,21 +32,22 @@ const addedIds = (state = initialState.addedIds, action, quantity) => {
 };
 
 const quantityById = (state = initialState.quantityById, action) => {
-  const { type, productId } = action;
+  const { type, payload } = action;
+  const { productId, quantity } = payload || {};
 
   switch (type) {
   case ADD_TO_CART:
     return {
       ...state,
-      [productId]: (state[productId] || 0) + 1,
+      [productId]: (state[productId] || 0) + quantity,
     };
 
-  case REMOVE_FROM_CARD:
+  case REMOVE_1_FROM_CARD:
     // FIXME : как без лодаша убрать значение из объекта?
     const { [productId]: b, ...rest } = state;
     return { ...rest };
 
-  case REMOVE_1_FROM_CARD:
+  case REMOVE_FROM_CARD:
     // FIXME : если нету кнопки то проверка не нужна, но тест то я написать могу, по сути ;)
     if (state[productId] && state[productId] > 0) {
       if (state[productId] - 1 === 0) {

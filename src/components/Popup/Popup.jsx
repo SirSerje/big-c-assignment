@@ -43,10 +43,10 @@ const CartContainer = (props) => {
 
 CartContainer.propTypes = {
   products: PropTypes.any,
-  total: PropTypes.any,
-  addToCart: PropTypes.any,
-  removeFromCart: PropTypes.any,
-  removeAllFromCart: PropTypes.any,
+  total: PropTypes.string.isRequired,
+  addToCart: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func.isRequired,
+  removeAllFromCart: PropTypes.func.isRequired,
 };
 
 CartContainer.defaultProps = {
