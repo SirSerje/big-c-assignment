@@ -7,17 +7,11 @@ import './Popup.scss';
 import * as actions from '../../actions';
 import PopupCart from './PopupCart';
 
-// TODO : maybe stateless
-
 const Popup = (props) => {
   const {
     products, total, addToCart, removeFromCart, removeAllFromCart,
   } = props;
   const hasProducts = products.length > 0;
-
-  const add = (i) => addToCart(i.target.id);
-  const remove = (i) => removeFromCart(i.target.id);
-  const removeAll = (i) => removeAllFromCart(i.target.id);
 
   return (
     <div className="CartPopup">
@@ -25,9 +19,9 @@ const Popup = (props) => {
         <PopupCart
           products={products}
           total={total}
-          add={add}
-          remove={remove}
-          removeAll={removeAll}
+          add={(i) => addToCart(i.target.id)}
+          remove={(i) => removeFromCart(i.target.id)}
+          removeAll={(i) => removeAllFromCart(i.target.id)}
         />
       </div>
       <div className="CartPopup--bottom">

@@ -10,7 +10,7 @@ module.exports = {
     "react/forbid-prop-types": 1,
     "react/jsx-props-no-spreading": 1,
     "class-methods-use-this": 1,
-    "react/destructuring-assignment": 1,
+    "react/destructuring-assignment": 0,
     "indent": ["error", 2]
   }
 };

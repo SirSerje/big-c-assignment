@@ -2,6 +2,7 @@ import React from 'react';
 import './Cart.scss';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { getCartProducts, getTotal } from '../../reducers';
 import * as actions from '../../actions';
 import CartItem from './CartItem';
@@ -10,9 +11,6 @@ import CartItem from './CartItem';
 const Cart = ({
   products, total, addToCart, removeFromCart, removeAllFromCart,
 }) => {
-  const add = (i) => addToCart(i.target.id);
-  const remove = (i) => removeFromCart(i.target.id);
-  const removeAll = (i) => removeAllFromCart(i.target.id);
   const hasProducts = products.length > 0;
   const nodes = hasProducts ? (
     products.map((product) => {
@@ -23,9 +21,9 @@ const Cart = ({
           {...product}
           key={id}
           id={id}
-          add={add}
-          remove={remove}
-          removeAll={removeAll}
+          add={(i) => addToCart(i.target.id)}
+          remove={(i) => removeFromCart(i.target.id)}
+          removeAll={(i) => removeAllFromCart(i.target.id)}
         />
       );
     })
@@ -42,9 +40,13 @@ const Cart = ({
           &#36;
           {total}
         </div>
-        <div><button type="button">checkout</button></div>
+        <div>
+          <Link to="/">continue shopping</Link>
+        </div>
+        <div>
+          <button type="button">checkout</button>
+        </div>
       </div>
-
     </div>
   );
 };
@@ -56,7 +58,6 @@ Cart.propTypes = {
   removeFromCart: PropTypes.func.isRequired,
   removeAllFromCart: PropTypes.func.isRequired,
 };
-
 
 const mapStateToProps = (state) => ({
   products: getCartProducts(state),

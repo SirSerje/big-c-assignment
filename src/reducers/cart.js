@@ -1,6 +1,6 @@
 import {
   ADD_TO_CART,
-  REMOVE_1_FROM_CARD,
+  REMOVE_ALL_FROM_CARD,
   REMOVE_FROM_CARD,
 } from '../constants';
 
@@ -27,7 +27,7 @@ const addedIds = (state = initialState.addedIds, action, quantity) => {
     }
     return state;
 
-  case REMOVE_1_FROM_CARD:
+  case REMOVE_ALL_FROM_CARD:
     return [...state.filter((i) => i !== productId)];
 
   default:
@@ -46,7 +46,7 @@ const quantityById = (state = initialState.quantityById, action) => {
       [productId]: (state[productId] || 0) + quantity,
     };
 
-  case REMOVE_1_FROM_CARD:
+  case REMOVE_ALL_FROM_CARD:
     const { [productId]: itemToRemove, ...rest } = state;
     return { ...rest };
 

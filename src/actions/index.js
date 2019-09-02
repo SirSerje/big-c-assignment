@@ -21,10 +21,9 @@ export const addToCart = (productId, quantity = 1) => (dispatch) => dispatch(
 );
 
 export const removeFromCart = (productId) => (dispatch) => dispatch(
-  { type: types.REMOVE_1_FROM_CARD, payload: { productId } },
+  { type: types.REMOVE_ALL_FROM_CARD, payload: { productId } },
 );
 
-// TODO swap const
 export const removeAll = (productId) => (dispatch) => dispatch(
   { type: types.REMOVE_FROM_CARD, payload: { productId } },
 );

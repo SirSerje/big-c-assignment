@@ -1,9 +1,5 @@
-export const APP_INIT = 'APP_INIT';
-export const ADD_TO_MY_CART = 'ADD_TO_MY_CART';
-
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const CHECKOUT_REQUEST = 'CHECKOUT_REQUEST';
 export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS';
-
 export const REMOVE_FROM_CARD = 'REMOVE_FROM_CARD';
-export const REMOVE_1_FROM_CARD = 'REMOVE_1_FROM_CARD';
+export const REMOVE_ALL_FROM_CARD = 'REMOVE_ALL_FROM_CARD';
