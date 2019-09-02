@@ -23,13 +23,13 @@ const CartItem = ({
         {price}
       </div>
     </div>
-    <div className="CartItem--control">
+    <div className="CartItem--control add">
       <button type="button" id={id} onClick={add}>+</button>
     </div>
-    <div className="CartItem--control">
+    <div className="CartItem--control removeAll">
       <button type="button" id={id} onClick={removeAll}>-</button>
     </div>
-    <div className="CartItem--control">
+    <div className="CartItem--control remove">
       <button type="button" id={id} onClick={remove}>X</button>
     </div>
   </div>
