@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import * as actions from '../../actions';
 import './App.scss';
 import Category from '../Category';
@@ -69,6 +70,12 @@ class App extends React.PureComponent {
   }
 }
 
+App.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
+  init: PropTypes.func,
+};
 
 const mapStateToProps = ({ products }) => products;
 const mapDispatchToProps = (dispatch) => ({ init: () => dispatch(actions.getAllProducts()) });

@@ -39,14 +39,9 @@ const PopupCart = ({ products, total, remove }) => {
 
 
 PopupCart.propTypes = {
-  products: PropTypes.any,
+  products: PropTypes.arrayOf(PropTypes.object),
   total: PropTypes.string.isRequired,
   remove: PropTypes.func.isRequired,
 };
-
-PopupCart.defaultProps = {
-
-};
-
 
 export default PopupCart;

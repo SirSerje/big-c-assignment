@@ -13,7 +13,6 @@ const Cart = ({
   const add = (i) => addToCart(i.target.id);
   const remove = (i) => removeFromCart(i.target.id);
   const removeAll = (i) => removeAllFromCart(i.target.id);
-
   const hasProducts = products.length > 0;
   const nodes = hasProducts ? (
     products.map((product) => {
@@ -51,7 +50,7 @@ const Cart = ({
 };
 
 Cart.propTypes = {
-  products: PropTypes.any.isRequired,
+  products: PropTypes.arrayOf(PropTypes.object),
   total: PropTypes.string.isRequired,
   addToCart: PropTypes.func.isRequired,
   removeFromCart: PropTypes.func.isRequired,

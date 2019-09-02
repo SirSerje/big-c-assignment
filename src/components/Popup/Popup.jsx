@@ -9,7 +9,7 @@ import PopupCart from './PopupCart';
 
 // TODO : maybe stateless
 
-const CartContainer = (props) => {
+const Popup = (props) => {
   const {
     products, total, addToCart, removeFromCart, removeAllFromCart,
   } = props;
@@ -41,16 +41,12 @@ const CartContainer = (props) => {
   );
 };
 
-CartContainer.propTypes = {
-  products: PropTypes.any,
+Popup.propTypes = {
+  products: PropTypes.arrayOf(PropTypes.object),
   total: PropTypes.string.isRequired,
   addToCart: PropTypes.func.isRequired,
   removeFromCart: PropTypes.func.isRequired,
   removeAllFromCart: PropTypes.func.isRequired,
-};
-
-CartContainer.defaultProps = {
-
 };
 
 const mapStateToProps = (state) => ({
@@ -67,4 +63,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(CartContainer);
+)(Popup);

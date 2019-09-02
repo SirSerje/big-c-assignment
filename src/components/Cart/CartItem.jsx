@@ -37,19 +37,15 @@ const CartItem = ({
 
 
 CartItem.propTypes = {
-  id: PropTypes.any,
-  price: PropTypes.any,
-  image: PropTypes.any,
-  brand: PropTypes.any,
-  quantity: PropTypes.any,
-  title: PropTypes.any,
-  add: PropTypes.any,
-  remove: PropTypes.any,
-  removeAll: PropTypes.any,
-};
-
-CartItem.defaultProps = {
-
+  id: PropTypes.string,
+  price: PropTypes.number,
+  image: PropTypes.string,
+  brand: PropTypes.string,
+  quantity: PropTypes.number,
+  title: PropTypes.string,
+  add: PropTypes.func,
+  remove: PropTypes.func,
+  removeAll: PropTypes.func,
 };
 
 export default CartItem;

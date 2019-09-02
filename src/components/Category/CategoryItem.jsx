@@ -3,6 +3,7 @@ import './CategoryItem.scss';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+
 const CategoryItem = ({ onClick, data }) => {
   const {
     id, title, image, price, brand,
@@ -11,7 +12,11 @@ const CategoryItem = ({ onClick, data }) => {
   return (
     <div className="Category-item">
       <div className="Category-item--image">
-        <img className="Category-item--image-resize_fit_center" src={`media/${image}`} alt={title} />
+        <img
+          className="Category-item--image-resize_fit_center"
+          src={`media/${image}`}
+          alt={title}
+        />
         <div className="Category-item--image-hover">
           <Link className="" to={`product/${id}`}>details</Link>
           <button type="button" onClick={onClick} id={id}>add to cart</button>
@@ -30,12 +35,16 @@ const CategoryItem = ({ onClick, data }) => {
   );
 };
 
-
 CategoryItem.propTypes = {
-  data: PropTypes.any,
-  onClick: PropTypes.any,
+  data: PropTypes.exact({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    image: PropTypes.string,
+    price: PropTypes.number,
+    brand: PropTypes.string,
+    description: PropTypes.string,
+  }),
+  onClick: PropTypes.func,
 };
-
-CategoryItem.defaultProps = {};
 
 export default CategoryItem;

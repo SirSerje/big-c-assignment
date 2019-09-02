@@ -29,18 +29,14 @@ const PopupItem = ({
 );
 
 PopupItem.propTypes = {
-  products: PropTypes.any,
-  id: PropTypes.any,
-  price: PropTypes.any,
-  image: PropTypes.any,
-  brand: PropTypes.any,
-  quantity: PropTypes.any,
-  title: PropTypes.any,
-  remove: PropTypes.any,
+  id: PropTypes.string,
+  title: PropTypes.string,
+  image: PropTypes.string,
+  price: PropTypes.number,
+  brand: PropTypes.string,
+  quantity: PropTypes.number,
+  remove: PropTypes.func,
 };
 
-PopupItem.defaultProps = {
-
-};
 
 export default PopupItem;

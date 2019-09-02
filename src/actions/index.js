@@ -13,7 +13,7 @@ export const getAllProducts = () => (dispatch) => {
     });
 };
 
-export const addToCart = (productId, quantity=1) => (dispatch) => dispatch(
+export const addToCart = (productId, quantity = 1) => (dispatch) => dispatch(
   {
     type: types.ADD_TO_CART,
     payload: { productId, quantity },

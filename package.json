@@ -9,9 +9,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom --coverage --no-watch",
     "eject": "react-scripts eject",
-    "lint": "eslint ./src/**",
-    "lint:fix": "eslint src/**/*.js --fix",
-    "lint:fix2": "eslint src/**/*.jsx --fix",
+    "lint": "eslint src --ext .js,.jsx",
+    "lint-fix": "yarn run lint --fix",
     "srg": "yarn build && surge build/"
   },
   "dependencies": {

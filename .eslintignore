@@ -1,2 +1,5 @@
 /build/**
 /coverage/**
+/src/setupTests.js
+src/**/*.test.js
+src/**/*.test.jsx

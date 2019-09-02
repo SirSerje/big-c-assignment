@@ -6,8 +6,9 @@ import { getProduct } from '../../reducers';
 import * as actions from '../../actions';
 import { ROOT_LOCATION } from '../../constants';
 
+
 class Product extends React.PureComponent {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       id: props.match.params.id,
@@ -15,20 +16,18 @@ class Product extends React.PureComponent {
     };
     this.changeQuantity = this.changeQuantity.bind(this);
   }
-
+  
   // TODO: add arrow function (check react config)
-  changeQuantity(i) {
-    this.setState({ counter: this.state.counter + i });
+  changeQuantity (i) {
+    this.setState({counter: this.state.counter + i});
   }
-
-  renderDescription({
-    title, price, image, brand, description,
-  }) {
+  
+  renderDescription ({title, price, image, brand, description}) {
     return (
       <div className="Product--content">
         <div className="Product--content-image">
           {/* eslint-disable-next-line no-undef */}
-          <img src={`${ROOT_LOCATION}/media/${image}`} alt={title} />
+          <img src={`${ROOT_LOCATION}/media/${image}`} alt={title}/>
         </div>
         <div className="Product--content-description">
           <div className="title">{title}</div>
@@ -42,28 +41,31 @@ class Product extends React.PureComponent {
       </div>
     );
   }
-
-  render() {
+  
+  render () {
     return (
       <div className="Product">
         {this.props.product ? (
           <>
-            {this.renderDescription({ ...this.props.product })}
-            {console.log(this.props.match)}
+            {this.renderDescription({...this.props.product})}
             <div className="Product--controls">
-              <button type="button" onClick={() => this.changeQuantity(+1)}>+</button>
+              <button type="button" onClick={() => this.changeQuantity(+1)}>+
+              </button>
               <button
                 type="button"
+                {/* eslint-disable-next-line no-unused-expressions */}
                 onClick={() => {
-                  this.state.counter > 1 && this.changeQuantity(-1);
+                  this.state.counter > 1 &&
+                  this.changeQuantity(-1);
                 }}
               >
                 -
               </button>
               <button
                 type="button"
-                id={this.props.state}
-                onClick={() => this.props.addToCart(this.state.id, this.state.counter)}
+                id={this.state.id}
+                onClick={() => this.props.addToCart(this.state.id,
+                  this.state.counter)}
               >
                 add to cart
               </button>
@@ -81,7 +83,7 @@ Product.propTypes = {
     id: PropTypes.string,
   }),
   addToCart: PropTypes.func,
-  product: PropTypes.any,
+  product: PropTypes.objectOf(PropTypes.object),
 };
 
 const mapStateToProps = (state, b) => ({
