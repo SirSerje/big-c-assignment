@@ -2,6 +2,7 @@
   "name": "storefront",
   "author": "SirSerje",
   "email": "sir.serje@gmail.com",
+  "homepage":"http://sirserje.netlify.com/",
   "version": "0.1.0",
   "private": true,
   "scripts": {
