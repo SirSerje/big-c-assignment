@@ -3,7 +3,6 @@ import './Category.scss';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../../actions';
-// TODO: organize import correctly
 import CategoryItem from './CategoryItem';
 
 
@@ -11,7 +10,6 @@ class Category extends React.PureComponent {
   render() {
     return (
       <div className="Category">
-
         <div className="Category-container">
           {
             this.props.products.byId

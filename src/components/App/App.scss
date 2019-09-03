@@ -4,18 +4,17 @@
   text-align: center;
 
   &-header {
-    z-index:2;
+    z-index: 2;
     display: flex;
     justify-content: space-between;
     box-shadow: $common-box-shadow;
     background: $color_white;
-    height: 50px;
     position: fixed;
     width: 100%;
     align-items: center;
 
     &--cart {
-      width: 80px;
+      width: 100px;
       cursor: pointer;
       user-select: none;
       margin-right: 10px;
@@ -31,11 +30,11 @@
       margin-right: 5px;
 
       a:link, a:visited {
+        font-weight: bold;
         background-color: $color_white;
         color: $color_black;
         padding: 10px 25px;
         text-align: center;
-        text-decoration: none;
         display: inline-block;
       }
 

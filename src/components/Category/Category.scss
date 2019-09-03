@@ -8,5 +8,42 @@
   &-container {
     display: flex;
     flex-wrap: wrap;
+
+    &--front {
+      position: relative;
+
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: scale-down;
+      }
+    }
   }
+}
+
+.SSSSS {
+  &-title {
+    position: inherit;
+
+    font-size:24px;
+    text-decoration: underline;
+    padding:30px;
+
+  }
+  &-description {
+    padding: 90px 30px 30px 30px;
+    position: inherit;
+    overflow:hidden;
+
+  }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  text-align:left;
+  height:100%;
+  width:50%;
+  color:white;
+  background: rgba(0, 0, 0, 0.58);
 }
