@@ -17,7 +17,6 @@ class Product extends React.PureComponent {
     this.changeQuantity = this.changeQuantity.bind(this);
   }
 
-  // TODO: add arrow function (check react config)
   changeQuantity(i) {
     this.setState((prevState) => ({ counter: prevState.counter + i }));
   }

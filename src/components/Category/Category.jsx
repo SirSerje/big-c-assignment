@@ -1,32 +1,16 @@
 import React from 'react';
 import './Category.scss';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../../actions';
-// TODO: organize import correctly
 import CategoryItem from './CategoryItem';
-import {ROOT_LOCATION} from '../../constants';
 
 
 class Category extends React.PureComponent {
   render() {
     return (
       <div className="Category">
-
         <div className="Category-container">
-          <div className="Category-container--front">
-
-            <div className="SSSSS">
-              <div className="SSSSS-title">Plates</div>
-              <div className="SSSSS-description">Sed ut perspiciatis unde omnis iste natus error
-                sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                explicabo.
-              </div>
-            </div>
-            <img src={`${ROOT_LOCATION}/media/plates-header.jpg`}/>
-
-          </div>
           {
             this.props.products.byId
             && Object.values(this.props.products.byId)
@@ -50,7 +34,7 @@ Category.propTypes = {
   addToCart: PropTypes.func,
 };
 
-const mapStateToProps = ({products}) => ({products});
+const mapStateToProps = ({ products }) => ({ products });
 
 const mapDispatchToProps = (dispatch) => ({
   init: () => dispatch(actions.getAllProducts()),

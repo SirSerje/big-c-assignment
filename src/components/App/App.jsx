@@ -10,6 +10,7 @@ import Product from '../Product';
 import CartPopup from '../Popup';
 import OutsideDetector from '../OutsideDetector';
 import { getTotalQuantity } from '../../reducers';
+import { ROOT_LOCATION } from '../../constants';
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -41,7 +42,9 @@ class App extends React.PureComponent {
     return (
       <div className="App">
         <header className="App-header">
-          <div className="App-header--logo">big-c-assignment</div>
+          <div className="App-header--logo">
+            <img src={`${ROOT_LOCATION}/media/logo.png`} alt="Logo" />
+          </div>
           <div className="App-header--menu">
             <span>
               <Link to="/">Category</Link>
@@ -53,7 +56,12 @@ class App extends React.PureComponent {
                 {
                   this.state.isModalOpen
                     ? <p onClick={() => this.setState({ isModalOpen: false })}>close cart</p>
-                    : <b onClick={() => this.setState({ isModalOpen: true })}>show cart {this.props.quantity > 0 && `(${this.props.quantity})`}</b>
+                    : (
+                      <b onClick={() => this.setState({ isModalOpen: true })}>
+                        show cart
+                        {this.props.quantity > 0 && `(${this.props.quantity})`}
+                      </b>
+                    )
                 }
               </span>
             )}
@@ -76,10 +84,11 @@ App.propTypes = {
     pathname: PropTypes.string,
   }),
   init: PropTypes.func,
+  quantity: PropTypes.string,
 };
 
 
-const mapStateToProps =  (state) => ({
+const mapStateToProps = (state) => ({
   products: state.products,
   quantity: getTotalQuantity(state),
 });
